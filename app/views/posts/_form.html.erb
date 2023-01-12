@@ -1,6 +1,5 @@
 <%= form_with model: post, url: path, data: { turbo: false } do |form| %>
   <div class="container">
-
     <% if @post.errors.any? %>
       <ul>
         <% @post.errors.each do |error| %>
@@ -10,24 +9,22 @@
     <% end %>
     <div class="container">
       <div class="d-grid">
-        <% @posts.each do |post| %>
-          <div class="card mt-2 mb-3">
-            <div class="card-header bg-dark text-info">
-              <span class="text-warning float-start m-2 pt-2"><%= post.user.email %></span><br>
-            </div>
-        <% end %>
-        <div class="container">
-          <div class="card-body">
-            <div class="mb-3">
-              <% form.label :content %>
-              <%= form.text_area :content, class: "form-control", placeholder: 'Tell me something....' %>
-            </div>
-            <div class="field mb-3 mt-2">
-              <%= form.file_field :image, class: "form-control" %>
-            </div>
-            <%= form.submit 'Save', class: 'btn btn-outline-secondary' %>
+        <div class="card mt-2 mb-3">
+          <div class="card-header bg-dark text-info">
+            <span class="text-warning float-start m-2 pt-2"><%= current_user.email if user_signed_in? %></span><br>
           </div>
-        </div>
+          <div class="container">
+            <div class="card-body">
+              <div class="mb-3">
+                <% form.label :content %>
+                <%= form.text_area :content, class: "form-control", placeholder: 'Tell me something....' %>
+              </div>
+              <div class="field mb-3 mt-2">
+                <%= form.file_field :image, class: "form-control w-50" %>
+              </div>
+              <%= form.submit 'Create Post', class: 'btn btn-outline-secondary' %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

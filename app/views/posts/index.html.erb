@@ -7,15 +7,16 @@
           <span class="text-warning float-start m-2 pt-2"><%= post.user.email %></span><br>
         </div>
         <div class="card-body">
-          <span>Content: </span><span class="text-warning"><%= post.content %></span><br>
+          <span class="text-warning"><%= post.content %></span><br>
           <span class="text-warning"><%= image_tag post.image.url, width: "100", height: "100", class: "rounded border border-2mx-auto d-block float-middle" if post.image.present? %></span>
         </div>
-
-        <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-secondary" if post.user == current_user %></td>
-        <!--                      <td><%#= link_to 'Comment', post_comments_path(post),  class: "btn btn-secondary" %></td>-->
-        <%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" if post.user == current_user %>
+        <div class="container">
+          <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-secondary mb-2 " if post.user == current_user %></td>
+          <!--                      <td><%#= link_to 'Comment', post_comments_path(post),  class: "btn btn-secondary" %></td>-->
+          <%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger mb-2" if post.user == current_user %>
+        </div>
+      </div>
     <% end %>
-    </div>
   </div>
 </div>
-<%= link_to 'New', new_post_path, class: "btn btn-primary" %>
+<%#= link_to 'New', new_post_path, class: "btn btn-primary" %>
